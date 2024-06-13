@@ -1,0 +1,67 @@
+{
+	"name": "views-containers-samples",
+	"displayName": "Views Containers Samples",
+	"description": "Samples for VSCode's Views Containers",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {  
+			"activitybar": [  
+				{  
+					"id": "myCustomContainer",  
+					"title": "My Custom Container",  
+					"icon": "resources/dark/document.svg"
+				}
+			]  
+		},  
+		"views": {  
+			"myCustomContainer": [  
+				{  
+					"id": "myCustomContainerView1",  
+					"name": "My Custom Container View 1"  
+				}  
+			]  
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint \"src/**/*.ts\""
+	},
+	"devDependencies": {
+		"@types/ftp": "^0.3.33",
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^18",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.4.2"
+	},
+	"dependencies": {
+		"ftp": "^0.3.10",
+		"jsonc-parser": "^0.4.2",
+		"minimist": "^1.2.6",
+		"mkdirp": "^0.5.1",
+		"rimraf": "^2.6.2"
+	}
+}

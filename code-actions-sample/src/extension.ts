@@ -18,11 +18,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	subscribeToDocumentChanges(context, emojiDiagnostics);
 
-	context.subscriptions.push(
-		vscode.languages.registerCodeActionsProvider('markdown', new Emojinfo(), {
-			providedCodeActionKinds: Emojinfo.providedCodeActionKinds
-		})
-	);
+	// context.subscriptions.push(
+	// 	vscode.languages.registerCodeActionsProvider('markdown', new Emojinfo(), {
+	// 		providedCodeActionKinds: Emojinfo.providedCodeActionKinds
+	// 	})
+	// );
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(COMMAND, () => vscode.env.openExternal(vscode.Uri.parse('https://unicode.org/emoji/charts-12.0/full-emoji-list.html')))

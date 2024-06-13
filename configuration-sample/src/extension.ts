@@ -1,3 +1,5 @@
+'use strict';
+
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -58,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	// Example: Reading Resource scoped configuration for a file
-	context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(e => {
+	context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: any) => {
 
 		// 1) Get the configured glob pattern value for the current file
 		const value: any = vscode.workspace.getConfiguration('', e.uri).get('conf.resource.insertEmptyLastLine');
@@ -162,7 +164,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let statusSizeDisposable: vscode.Disposable;
 	// Example: Reading language overridable configuration for a document
-	context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(e => {
+	context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: any) => {
 
 		if (statusSizeDisposable) {
 			statusSizeDisposable.dispose();
@@ -173,7 +175,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// 3) If matches, insert empty last line
 		if (showSize) {
-			statusSizeDisposable = vscode.window.setStatusBarMessage(`${e.getText().length}`);
+			statusSizeDisposable = vscode.window.setStatusBarMessage(`language show size: ${e.getText().length}`);
 		}
 
 	}));
@@ -190,7 +192,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}));
 
 	// Example: Listening to configuration changes
-	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {
+	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: any) => {
 
 		if (e.affectsConfiguration('conf.resource.insertEmptyLastLine')) {
 			if (vscode.window.activeTextEditor) {

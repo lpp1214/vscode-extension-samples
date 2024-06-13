@@ -15,11 +15,23 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
 		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
 		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
+
+		const panel = vscode.window.createWebviewPanel(  
+			'myWebview', // viewType  
+			"My Webview", // 面板标题  
+			vscode.ViewColumn.One, // 显示在编辑器的哪个部位  
+			{} // Webview选项  
+		);  
+	
+		// 设置Webview的HTML内容  
+		panel.webview.html = getWebviewContent();  
 	}));
 
 	// create a new status bar item that we can now manage
 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
 	myStatusBarItem.command = myCommandId;
+	myStatusBarItem.text = 'default';
+	myStatusBarItem.show();
 	subscriptions.push(myStatusBarItem);
 
 	// register some listener that make sure the status bar 
@@ -35,9 +47,9 @@ function updateStatusBarItem(): void {
 	const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
 	if (n > 0) {
 		myStatusBarItem.text = `$(megaphone) ${n} line(s) selected`;
-		myStatusBarItem.show();
+		// myStatusBarItem.show();
 	} else {
-		myStatusBarItem.hide();
+		// myStatusBarItem.hide();
 	}
 }
 
@@ -48,3 +60,12 @@ function getNumberOfSelectedLines(editor: vscode.TextEditor | undefined): number
 	}
 	return lines;
 }
+
+function getWebviewContent() {  
+    return `  
+        <html>  
+        <body>  
+            <h1>Hello, World!</h1>  
+        </body>  
+        </html>`;  
+}  

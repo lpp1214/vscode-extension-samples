@@ -1,0 +1,160 @@
+{
+	"name": "menu-samples",
+	"displayName": "Menu Samples",
+	"description": "Samples for VSCode's menu",
+	"version": "0.0.1",
+	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:json",
+		"onLanguage:jsonc"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"views": {  
+        	"explorer": [  
+				{  
+					"id": "myCustomView",  
+					"name": "My Custom View"  
+				}  
+			]  
+		},
+		"commands": [
+			{
+				"command": "extension.sayHello",
+				"title": "Hello World"
+			},
+			{  
+				"command": "extension.helloFromEditorTitle",  
+				"title": "Hello from Editor Title"  
+			},
+			{  
+				"command": "extension.helloFromEditorContext",  
+				"title": "Hello from Editor Context"  
+			},
+			{  
+				"command": "extension.helloFromExplorerContext",  
+				"title": "Hello from Explorer Context"  
+			},
+			{  
+				"command": "extension.helloFromViewTitle",  
+				"title": "Hello from View Title"  
+			},
+			{  
+				"command": "extension.helloFromViewItemContext",  
+				"title": "Hello from View Item Context"  
+			}
+		],
+		"menus": {  
+			"commandPalette": [
+				{  
+					"command": "extension.sayHello",  
+					"when": "resourceLangId == json || resourceLangId == jsonc"  
+				}
+			],
+			"editor/title": [
+				{  
+					"command": "extension.helloFromEditorTitle",  
+					"group": "navigation"  
+				},
+				{  
+					"command": "extension.helloFromEditorTitle",  
+					"group": "1_modification"  
+				}
+			],
+			"editor/context": [
+				{  
+					"command": "extension.helloFromEditorContext",  
+					"group": "navigation"  
+				},
+				{  
+					"command": "extension.helloFromEditorContext",  
+					"group": "1_modification"  
+				},
+				{  
+					"command": "extension.helloFromEditorContext",  
+					"group": "9_cutcopypaste"  
+				},
+				{  
+					"command": "extension.helloFromEditorContext",  
+					"group": "z_commands"  
+				}
+			],
+			"explorer/context": [  
+				{  
+					"command": "extension.helloFromExplorerContext",  
+					"group": "navigation"  
+				},
+				{  
+					"command": "extension.helloFromExplorerContext",  
+					"group": "1_modification"  
+				},
+				{  
+					"command": "extension.helloFromExplorerContext",  
+					"group": "3_changeAll"  
+				},
+				{  
+					"command": "extension.helloFromExplorerContext",  
+					"group": "9_cutcopypaste"  
+				},
+				{  
+					"command": "extension.helloFromExplorerContext",  
+					"group": "z_commands"  
+				}
+			],
+			"view/title": [  
+				{  
+					"command": "extension.helloFromViewTitle",
+					"when": "view == myCustomView",
+					"group": "navigation"  
+				},
+				{  
+					"command": "extension.helloFromViewTitle",
+					"when": "view == myCustomView",
+					"group": "commands"  
+				} 
+			],
+			"view/item/context": [  
+				{  
+					"command": "extension.helloFromViewItemContext",  
+					"when": "view == myCustomView"  
+				}  
+			]
+		}  
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint \"src/**/*.ts\""
+	},
+	"devDependencies": {
+		"@types/ftp": "^0.3.33",
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^18",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.4.2"
+	},
+	"dependencies": {
+		"ftp": "^0.3.10",
+		"jsonc-parser": "^0.4.2",
+		"minimist": "^1.2.6",
+		"mkdirp": "^0.5.1",
+		"rimraf": "^2.6.2"
+	}
+}

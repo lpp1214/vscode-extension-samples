@@ -153,7 +153,7 @@ export class CatScratchEditorProvider implements vscode.CustomTextEditorProvider
 				created: Date.now(),
 			}
 		];
-
+		vscode.window.showInformationMessage('Add new scratch!');
 		return this.updateTextDocument(document, json);
 	}
 
@@ -167,7 +167,7 @@ export class CatScratchEditorProvider implements vscode.CustomTextEditorProvider
 		}
 
 		json.scratches = json.scratches.filter((note: any) => note.id !== id);
-
+		vscode.window.showInformationMessage('Delete scratch!');
 		return this.updateTextDocument(document, json);
 	}
 
